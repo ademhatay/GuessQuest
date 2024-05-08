@@ -124,7 +124,7 @@ const Header = () => {
                 </ResponsiveModal>
             </div>
 
-            <h1 className="text-xl font-bold">Guess Quest</h1>
+            <h1 className="text-xl font-bold mr-4">Guess Quest</h1>
 
             <ResponsiveModal
                 trigger={<div title="Settings"><Settings2 size={28} /></div>}
@@ -158,7 +158,7 @@ const Header = () => {
                             </Button>
                         </div>
                     </ResponsiveModal>
-                    
+
                     <ResponsiveModal
                         trigger={<Button variant="outline" className="flex justify-between items-center px-5" title="Theme"><span className="flex gap-x-2">Theme</span><ChevronDown size={16} /></Button>}
                         title="Theme"
