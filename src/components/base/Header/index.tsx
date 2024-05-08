@@ -124,7 +124,7 @@ const Header = () => {
                 </ResponsiveModal>
             </div>
 
-            <h1 className="text-xl font-bold mr-4">Guess Quest</h1>
+            <h1 className="text-xl font-bold mr-10">Guess Quest</h1>
 
             <ResponsiveModal
                 trigger={<div title="Settings"><Settings2 size={28} /></div>}
