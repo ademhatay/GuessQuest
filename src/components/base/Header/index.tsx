@@ -3,7 +3,6 @@ import ResponsiveModal from "../ResponsiveDialog";
 import { BookType, ChevronDown, Contact, Facebook, Info, Link, PersonStanding, PlusCircle, Settings2, Share2, Twitter } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
 import {
     Select,
     SelectContent,
@@ -11,6 +10,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { useSettings } from "@/context/settingsContext";
 
 
 type AboutButtonType = {
@@ -75,10 +75,9 @@ const AboutButtons = [
 ];
 
 const Header = () => {
-    const [theme, setTheme] = useState<string>("light")
-    console.log(theme)
+    const { setTheme, theme, sound, setSound, language, setLanguage } = useSettings();
     return <>
-        <header className="w-full border-x-[1px] border-b-[1px] py-3 pb-2 px-5 flex justify-between border-slate-300">
+        <header className="w-full border-x-[1px] border-b-[1px] py-3 pb-2 px-5 flex justify-between dark:border-slate-800">
             <div className="flex gap-x-4">
                 <ResponsiveModal
                     trigger={<div title="About"><Info size={28} /></div>}
@@ -143,9 +142,24 @@ const Header = () => {
                         description="You can change the theme of the game."
                     >
                         <div className="flex flex-col gap-y-1">
-                            <Button variant="outline" onClick={() => setTheme("light")} className="w-full">Light</Button>
-                            <Button variant="outline" onClick={() => setTheme("dark")} className="w-full">Dark</Button>
-                            <Button variant="outline" onClick={() => setTheme("system")} className="w-full">System</Button>
+                            <Button
+                                variant={theme === "light" ? "secondary" : "outline"}
+                                onClick={() => setTheme("light")} className="w-full"
+                            >
+                                Light
+                            </Button>
+                            <Button
+                                variant={theme === "dark" ? "secondary" : "outline"}
+                                onClick={() => setTheme("dark")}
+                                className="w-full">
+                                Dark
+                            </Button>
+                            <Button
+                                variant={theme === "system" ? "secondary" : "outline"}
+                                onClick={() => setTheme("system")} className="w-full"
+                            >
+                                System
+                            </Button>
                         </div>
                     </ResponsiveModal>
 
@@ -154,8 +168,20 @@ const Header = () => {
                         title="Sounds"
                         description="You can change the sounds of the game.">
                         <div className="flex flex-col gap-y-1">
-                            <Button variant="outline" className="w-full">On</Button>
-                            <Button variant="outline" className="w-full">Off</Button>
+                            <Button
+                                variant={sound === "on" ? "secondary" : "outline"}
+                                onClick={() => setSound("on")}
+                                className="w-full"
+                            >
+                                On
+                            </Button>
+                            <Button
+                                variant={sound === "off" ? "secondary" : "outline"}
+                                onClick={() => setSound("off")}
+                                className="w-full"
+                            >
+                                Off
+                            </Button>
                         </div>
                     </ResponsiveModal>
 
@@ -164,8 +190,20 @@ const Header = () => {
                         title="Language"
                         description="You can change the language of the game.">
                         <div className="flex flex-col gap-y-1">
-                            <Button variant="outline" className="w-full">English</Button>
-                            <Button variant="outline" className="w-full">Turkish</Button>
+                            <Button
+                                variant={language === "en" ? "secondary" : "outline"}
+                                onClick={() => setLanguage("en")}
+                                className="w-full"
+                            >
+                                English
+                            </Button>
+                            <Button
+                                variant={language === "tr" ? "secondary" : "outline"}
+                                onClick={() => setLanguage("tr")}
+                                className="w-full"
+                            >
+                                Türkçe
+                            </Button>
                         </div>
                     </ResponsiveModal>
                 </div>

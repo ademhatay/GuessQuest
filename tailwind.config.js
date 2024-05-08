@@ -18,6 +18,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        darkBoard: "#161616",
         board: "#F2F2F2",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
