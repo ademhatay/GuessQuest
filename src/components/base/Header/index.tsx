@@ -136,6 +136,29 @@ const Header = () => {
                         <Input placeholder="New Username..." id="username" type="text" />
                         <Button>Save</Button>
                     </div>
+
+                    <ResponsiveModal
+                        trigger={<Button variant="outline" className="flex justify-between items-center px-5" title="Language"><span className="flex gap-x-2">Language</span><ChevronDown size={16} /></Button>}
+                        title="Language"
+                        description="You can change the language of the game.">
+                        <div className="flex flex-col gap-y-1">
+                            <Button
+                                variant={language === "en" ? "secondary" : "outline"}
+                                onClick={() => setLanguage("en")}
+                                className="w-full"
+                            >
+                                English
+                            </Button>
+                            <Button
+                                variant={language === "tr" ? "secondary" : "outline"}
+                                onClick={() => setLanguage("tr")}
+                                className="w-full"
+                            >
+                                Türkçe
+                            </Button>
+                        </div>
+                    </ResponsiveModal>
+                    
                     <ResponsiveModal
                         trigger={<Button variant="outline" className="flex justify-between items-center px-5" title="Theme"><span className="flex gap-x-2">Theme</span><ChevronDown size={16} /></Button>}
                         title="Theme"
@@ -181,28 +204,6 @@ const Header = () => {
                                 className="w-full"
                             >
                                 Off
-                            </Button>
-                        </div>
-                    </ResponsiveModal>
-
-                    <ResponsiveModal
-                        trigger={<Button variant="outline" className="flex justify-between items-center px-5" title="Language"><span className="flex gap-x-2">Language</span><ChevronDown size={16} /></Button>}
-                        title="Language"
-                        description="You can change the language of the game.">
-                        <div className="flex flex-col gap-y-1">
-                            <Button
-                                variant={language === "en" ? "secondary" : "outline"}
-                                onClick={() => setLanguage("en")}
-                                className="w-full"
-                            >
-                                English
-                            </Button>
-                            <Button
-                                variant={language === "tr" ? "secondary" : "outline"}
-                                onClick={() => setLanguage("tr")}
-                                className="w-full"
-                            >
-                                Türkçe
                             </Button>
                         </div>
                     </ResponsiveModal>
