@@ -1,72 +1,51 @@
 import CardComp from "@/components/base/CardComp"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Binary, CircleDashed, HelpCircle, Layers3 } from "lucide-react"
-import { useEffect, useState } from "react"
-import { Skeleton } from "@/components/ui/skeleton"
+import useRequestQuery from "@/hooks/useRequestQuery"
+import { useQueryClient } from "react-query"
 
-type CardData = {
-  popular?: boolean
-  horizontal?: boolean
-  icon: React.ReactNode,
-  title: string,
+type Mod = {
+  id: string;
+  name: string;
+  description: string;
+  isPopular: boolean;
+  icon: string;
+  isHorizontal?: boolean;
 }
 
-const cardData = [
-  {
-    popular: true,
-    horizontal: true,
-    icon: <Binary size={64} />,
-    title: "Guess Number"
-  },
-  {
-    icon: <Layers3 size={64} />,
-    title: "Guess Logo"
-  },
-  {
-    popular: true,
-    icon: <CircleDashed size={64} />,
-    title: "Guess Soccer Player"
-  },
-  {
-    icon: <HelpCircle size={64} />,
-    title: "Coming Soon"
-  },
-  {
-    icon: <HelpCircle size={64} />,
-    title: "Coming Soon"
-  },
-  {
-    icon: <HelpCircle size={64} />,
-    title: "Coming Soon"
-  },
-]
+type ErrorWithMessage = {
+  message: string;
+};
 
 const HomePage = () => {
 
-  const [cards, setCards] = useState<CardData[]>([])
-  const [loading, setLoading] = useState(false)
+const {isLoading, error} = useRequestQuery('http://192.168.1.33:8000/api/mods', 'mods');
 
-  useEffect(() => {
-    setLoading(true)
-    const load = setTimeout(() => {
-      setCards(cardData)
-      setLoading(false)
-    }, 3000)
+  const queryClient = useQueryClient();
+  const data = queryClient.getQueryData<Mod[]>('mods');
 
-  // clear the timeout when the component is unmounted
-    return () => {
-      clearInterval(load);
-    }
-  }, [])
-  return <>
+  if (error) {
+    const errorMessage = (error as ErrorWithMessage).message;
+    return <div>Error: {errorMessage}</div>;
+  }
+  return (
+    
     <ScrollArea className="h-[calc(100vh-90px)]">
-      <div className="grid md:grid-cols-3 gap-4 gap-y-2">
+      
+      <div className="grid md:grid-cols-2 gap-4 gap-y-2">
         {
-          loading ? cardData.map((_, i) => <Skeleton key={i} className="w-full h-56" />) : cards.map((card, i) => <CardComp key={i} {...card} />)
+          !error && isLoading ? <div>Loading...</div> : data?.map((mod) => (
+            <CardComp
+              key={mod.id}
+              popular={mod.isPopular}
+              horizontal={mod.isHorizontal}
+              icon={mod.icon}
+              title={mod.name}
+            />
+          ))
         }
       </div>
     </ScrollArea>
-  </>
+  )
 }
 
 export default HomePage

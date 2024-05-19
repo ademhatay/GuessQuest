@@ -1,0 +1,38 @@
+{
+    "correctGuess": [
+        "🎉 Congratulations! You guessed the correct number!",
+        "🌟 Hooray! You got it right!",
+        "🔥 Awesome! That's the number!",
+        "👍 Great job! You guessed it!"
+    ],
+    "lowGuess": [
+        "⬇️ Your guess is too low. Try again!",
+        "👇 Too low! Try a higher number.",
+        "🔽 Your guess is too small. Go higher!",
+        "📉 It's lower than the target. Try a higher one!"
+    ],
+    "highGuess": [
+        "⬆️ Your guess is too high. Try again!",
+        "👆 Too high! Try a lower number.",
+        "🔼 Your guess is too large. Go lower!",
+        "📈 It's higher than the target. Try a lower one!"
+    ],
+    "invalidNumber": [
+        "❌ Please enter a valid number.",
+        "🚫 Invalid input! Numbers only, please.",
+        "❗️ Invalid number! Try again.",
+        "🔢 Numbers only, please! Try again."
+    ],
+    "alreadyGuessed": [
+        "🔄 You have already guessed this number. Try a different one!",
+        "🔁 You've guessed this before. Try another number.",
+        "🔂 You already tried this. Pick a new one!",
+        "🔄 Try another number. You've already guessed this."
+    ],
+    "gameOver": [
+        "💔 Game Over! You've run out of lives.",
+        "😞 You lost! Better luck next time.",
+        "😢 Game over! Try again?",
+        "😔 Tough luck! Game over."
+    ]
+}
