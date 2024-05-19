@@ -18,7 +18,7 @@ type ErrorWithMessage = {
 
 const HomePage = () => {
 
-const {isLoading, error} = useRequestQuery('http://192.168.1.33:8000/api/mods', 'mods');
+const {isLoading, error} = useRequestQuery(`${import.meta.env.VITE_API_URL}/api/mods`, 'mods');
 
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData<Mod[]>('mods');
